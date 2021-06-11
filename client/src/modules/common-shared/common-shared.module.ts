@@ -4,12 +4,13 @@ import { MatCommonModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http'
 import { ApiClientService } from './services/api-client.service';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
-  declarations: [
-    ApiClientService
-  ],
+  declarations: [],
   imports: [
+    MatProgressSpinnerModule,
     HttpClientModule,
     CommonModule,
     MatCommonModule

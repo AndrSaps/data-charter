@@ -2,42 +2,68 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { RequestOptions } from '../model/request-options.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiClientService {
 
-  defaultOptions = {};
+  defaultOptions = {
+    shouldShowSpinner: true
+  } as RequestOptions;
 
   constructor(private http: HttpClient) { }
 
-  get(url, options = this.defaultOptions): Observable<any> {
-    return this.http.get(url, options)
+  get(url, options: RequestOptions = this.defaultOptions): Observable<any> {
+    if(this.defaultOptions.shouldShowSpinner){
+
+    }
+
+    let result =  this.http.get(url)
       .pipe(
         catchError(this.handleError)
       );
+
+    return result;
   }
   
-  post(url, data, options = this.defaultOptions): Observable<any> {
-    return this.http.post(url, data, options)
+  post(url, data, options: RequestOptions = this.defaultOptions): Observable<any> {
+    if(this.defaultOptions.shouldShowSpinner){
+      
+    }
+
+    let result =  this.http.post(url, data)
       .pipe(
         catchError(this.handleError)
       );
+
+    return result;
   }
 
-  delete(url, options = this.defaultOptions): Observable<any> {
-    return this.http.delete(url, options) 
+  delete(url, options: RequestOptions = this.defaultOptions): Observable<any> {
+    if(this.defaultOptions.shouldShowSpinner){
+      
+    }
+
+    let result = this.http.delete(url) 
       .pipe(
         catchError(this.handleError)
       );
+
+    return result;
   }
 
-  put(url, data, options = this.defaultOptions): Observable<any> {
-    let result = this.http.put(url, data, options)
+  put(url, data, options: RequestOptions = this.defaultOptions): Observable<any> {
+    if(this.defaultOptions.shouldShowSpinner){
+      
+    }
+    
+    let result = this.http.put(url, data)
       .pipe(
         catchError(this.handleError)
       );
+
     return result;
   }
 
