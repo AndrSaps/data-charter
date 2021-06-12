@@ -4,22 +4,19 @@ from constants import *
 from config import *
 from models import db
 
-
-#app configuration
+# app configuration
 app = Flask(__name__)
 api = Api(app)
 
-
-#database configuration
+# database configuration
 app.config[SQL_DATABASE_URL_LABEL] = DATABASE_URL
 db.init_app(app)
 
 
-#controllers
+# controllers
 class ClasterModel(Resource):
     def get(self):
-        return {'1':'Hello World!'}
-
+        return {'1': 'Hello World!'}
 
 
 api.add_resource(ClasterModel, "/trend")

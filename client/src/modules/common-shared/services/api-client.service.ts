@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { RequestOptions } from '../model/request-options.model'
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,50 +14,63 @@ export class ApiClientService {
     shouldShowSpinner: true
   } as RequestOptions;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private loadingService: LoadingService) { }
 
   get(url, options: RequestOptions = this.defaultOptions): Observable<any> {
-    if(this.defaultOptions.shouldShowSpinner){
+      if(options.shouldShowSpinner){
+        this.loadingService.setLoadingStatus(true);
+      }
+  
+      let result =  this.http.get(url)
+        .pipe(
+          catchError(this.handleError)
+        );
 
-    }
+      if(options.shouldShowSpinner){
+        this.loadingService.setLoadingStatus(false);
+      }
 
-    let result =  this.http.get(url)
-      .pipe(
-        catchError(this.handleError)
-      );
-
-    return result;
+      return result;
   }
   
   post(url, data, options: RequestOptions = this.defaultOptions): Observable<any> {
-    if(this.defaultOptions.shouldShowSpinner){
-      
+    if(options.shouldShowSpinner){
+      this.loadingService.setLoadingStatus(true);
     }
 
     let result =  this.http.post(url, data)
       .pipe(
         catchError(this.handleError)
       );
+    
+    if(options.shouldShowSpinner){
+      this.loadingService.setLoadingStatus(false);
+    }
 
     return result;
   }
 
   delete(url, options: RequestOptions = this.defaultOptions): Observable<any> {
-    if(this.defaultOptions.shouldShowSpinner){
-      
+    if(options.shouldShowSpinner){
+      this.loadingService.setLoadingStatus(true);
     }
 
     let result = this.http.delete(url) 
       .pipe(
         catchError(this.handleError)
       );
+    
+      if(options.shouldShowSpinner){
+      this.loadingService.setLoadingStatus(false);
+    }
 
     return result;
   }
 
   put(url, data, options: RequestOptions = this.defaultOptions): Observable<any> {
-    if(this.defaultOptions.shouldShowSpinner){
-      
+    if(options.shouldShowSpinner){
+      this.loadingService.setLoadingStatus(true);
     }
     
     let result = this.http.put(url, data)
@@ -64,6 +78,10 @@ export class ApiClientService {
         catchError(this.handleError)
       );
 
+    if(options.shouldShowSpinner){
+      this.loadingService.setLoadingStatus(false);
+    }
+    
     return result;
   }
 

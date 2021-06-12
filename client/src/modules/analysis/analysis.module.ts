@@ -9,7 +9,7 @@ import { AnalysisComponent } from './components/analysis/analysis.component';
   declarations: [AnalysisComponent],
   imports: [
     CommonModule,
-    CommonSharedModule,
+    CommonSharedModule.forRoot(),
     TrendRoutingModule
   ]
 })
