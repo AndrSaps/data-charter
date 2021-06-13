@@ -14,12 +14,12 @@ db.init_app(app)
 
 
 # controllers
-class ClasterModel(Resource):
+class CovidModel(Resource):
     def get(self):
         return {'1': 'Hello World!'}
 
 
-api.add_resource(ClasterModel, "/trend")
+api.add_resource(CovidModel, "/covid")
 
 if __name__ == '__main__':
     app.run()

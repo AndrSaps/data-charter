@@ -8,8 +8,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -24,10 +24,10 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     MatSidenavModule,
     MatIconModule,
-    MatToolbarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

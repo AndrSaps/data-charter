@@ -8,7 +8,7 @@ import { LoadingService } from 'src/modules/common-shared/services/loading.servi
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit, OnDestroy{
-  show = false;
+  showLoader = false;
   title = 'client';
   subscription: Subscription;
 
@@ -17,7 +17,7 @@ export class MainPageComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.subscription = this.loadingService.shoulShowLoader.subscribe(($event) => {
-      this.show = $event;
+      this.showLoader = $event;
     });
   }
   

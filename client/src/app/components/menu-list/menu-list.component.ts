@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faVirus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'menu-list',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuListComponent implements OnInit {
 
+  faVirus = faVirus;
   constructor() { }
 
   ngOnInit(): void {
