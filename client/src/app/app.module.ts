@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommonSharedModule } from 'src/modules/common-shared/common-shared.module';
 
 
 
@@ -22,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     MatProgressSpinnerModule,
     BrowserModule,
+    CommonSharedModule,
     MatSidenavModule,
     MatIconModule,
     AppRoutingModule,

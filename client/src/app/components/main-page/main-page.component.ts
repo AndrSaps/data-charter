@@ -10,15 +10,15 @@ import { LoadingService } from 'src/modules/common-shared/services/loading.servi
 export class MainPageComponent implements OnInit, OnDestroy{
   showLoader = false;
   title = 'client';
-  subscription: Subscription;
+  subscription: Subscription = new Subscription();
 
   constructor(private loadingService: LoadingService){
   }
 
   ngOnInit(): void {
-    this.subscription = this.loadingService.shoulShowLoader.subscribe(($event) => {
+    this.subscription.add(this.loadingService.shoulShowLoader.subscribe(($event) => {
       this.showLoader = $event;
-    });
+    }));
   }
   
   ngOnDestroy(): void {

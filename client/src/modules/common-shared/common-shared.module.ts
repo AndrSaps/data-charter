@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCommonModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http'
 import { ApiClientService } from './services/api-client.service';
+import { ScreenStateService } from './services/screen-state.service';
 import { LoadingService } from './services/loading.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -11,7 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 
 const CommonSharedModuleProviders = [
   ApiClientService,
-  LoadingService
+  LoadingService,
+  ScreenStateService
 ]
 
 const CommonSharedModuleComponents = [

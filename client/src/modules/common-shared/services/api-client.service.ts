@@ -17,7 +17,7 @@ export class ApiClientService {
   constructor(private http: HttpClient,
     private loadingService: LoadingService) { }
 
-  get(url, options: RequestOptions = this.defaultOptions): Observable<any> {
+  get(url, options: RequestOptions = this.defaultOptions) {
       if(options.shouldShowSpinner){
         this.loadingService.setLoadingStatus(true);
       }
@@ -25,7 +25,7 @@ export class ApiClientService {
       let result =  this.http.get(url)
         .pipe(
           catchError(this.handleError)
-        );
+        ).toPromise();
 
       if(options.shouldShowSpinner){
         this.loadingService.setLoadingStatus(false);
@@ -34,7 +34,7 @@ export class ApiClientService {
       return result;
   }
   
-  post(url, data, options: RequestOptions = this.defaultOptions): Observable<any> {
+  post(url, data, options: RequestOptions = this.defaultOptions) {
     if(options.shouldShowSpinner){
       this.loadingService.setLoadingStatus(true);
     }
@@ -42,7 +42,7 @@ export class ApiClientService {
     let result =  this.http.post(url, data)
       .pipe(
         catchError(this.handleError)
-      );
+      ).toPromise();
     
     if(options.shouldShowSpinner){
       this.loadingService.setLoadingStatus(false);
