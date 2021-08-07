@@ -4,6 +4,7 @@ import { CovidRoutingModule } from './covid-routing.module';
 import { CovidComponent } from './covid.page';
 import { CommonSharedModule } from '../common-shared/common-shared.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ChartModule } from '../chart/chart.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     CommonModule,
     CovidRoutingModule,
-    CommonSharedModule.forRoot()
+    CommonSharedModule.forRoot(),
+    ChartModule
   ]
 })
 export class CovidModule { }
