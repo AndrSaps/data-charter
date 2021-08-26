@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { ImageHandlerService } from '../chart/services/image-handler.service';
 import { ApiClientService } from '../common-shared/services/api-client.service'
 
 @Component({
@@ -15,13 +15,10 @@ export class AnalysisComponent implements OnInit {
   imagePath: any = "";
 
   constructor(private apiClientService: ApiClientService,
-    private sanitizer: DomSanitizer) { }
+    private imageHandlerService: ImageHandlerService) { }
 
   async ngOnInit() {
     this.data = await this.apiClientService.get(this.baseUrl);
-    debugger
-    this.imagePath = 'data:image/svg+xml;base64,' + this.data.data.substring(2, this.data.data.length-2);
-    this.imagePath = this.sanitizer.bypassSecurityTrustUrl(this.imagePath);
-    
+    this.imagePath = this.imageHandlerService.convertToSafeHtml(this.data.data);
   }
 }

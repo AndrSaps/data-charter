@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { RequestOptions } from '../model/request-options.model'
 import { LoadingService } from './loading.service';
@@ -51,7 +51,7 @@ export class ApiClientService {
     return result;
   }
 
-  delete(url, options: RequestOptions = this.defaultOptions): Observable<any> {
+  delete(url, options: RequestOptions = this.defaultOptions) {
     if(options.shouldShowSpinner){
       this.loadingService.setLoadingStatus(true);
     }
@@ -59,7 +59,7 @@ export class ApiClientService {
     let result = this.http.delete(url) 
       .pipe(
         catchError(this.handleError)
-      );
+      ).toPromise();
     
       if(options.shouldShowSpinner){
       this.loadingService.setLoadingStatus(false);
@@ -68,7 +68,7 @@ export class ApiClientService {
     return result;
   }
 
-  put(url, data, options: RequestOptions = this.defaultOptions): Observable<any> {
+  put(url, data, options: RequestOptions = this.defaultOptions) {
     if(options.shouldShowSpinner){
       this.loadingService.setLoadingStatus(true);
     }
@@ -76,7 +76,7 @@ export class ApiClientService {
     let result = this.http.put(url, data)
       .pipe(
         catchError(this.handleError)
-      );
+      ).toPromise();
 
     if(options.shouldShowSpinner){
       this.loadingService.setLoadingStatus(false);
@@ -86,8 +86,6 @@ export class ApiClientService {
   }
 
   private handleError(error: HttpErrorResponse) {
-
     return throwError(error.message);
-
   }
 }

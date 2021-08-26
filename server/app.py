@@ -15,15 +15,15 @@ CORS(app, support_credentials=True)
 
 # database configuration
 app.config[SQL_DATABASE_URL_LABEL] = DATABASE_URL
-db.init_app(app)
+# db.init_app(app)
 
 
 # controllers
 class CovidModel(Resource):
     def get(self):
         data = covid.confirmed_cases()
-
         return {'data': str(data)}
+
 
 
 api.add_resource(CovidModel, "/covid")
