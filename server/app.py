@@ -4,8 +4,7 @@ from constants import *
 from config import *
 from models import db
 from services import covid
-from flask_cors import CORS, cross_origin
-
+from flask_cors import CORS
 
 
 # app configuration

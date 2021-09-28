@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CovidService } from './services/covid.service';
 
 @Component({
   selector: 'covid',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CovidComponent implements OnInit {
 
-  constructor() { }
+  constructor(private covidService: CovidService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.covidService.getChart()
   }
 
 }

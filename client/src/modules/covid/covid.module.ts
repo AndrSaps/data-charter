@@ -5,6 +5,7 @@ import { CovidComponent } from './covid.page';
 import { CommonSharedModule } from '../common-shared/common-shared.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ChartModule } from '../chart/chart.module';
+import { CovidService } from './services/covid.service';
 
 
 @NgModule({
@@ -17,6 +18,9 @@ import { ChartModule } from '../chart/chart.module';
     CovidRoutingModule,
     CommonSharedModule.forRoot(),
     ChartModule
+  ], 
+  providers: [
+    CovidService
   ]
 })
 export class CovidModule { }

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import io
-
+import os
 
 plt.rcParams["figure.figsize"] = (9, 6)
 
@@ -14,7 +14,10 @@ def update_data():
                                   path="E:\\andrii\\proj\\data-charter\\server\\services\\temp", unzip=True)
 
 def confirmed_cases():
-    conf = pd.read_csv("E:\\andrii\\proj\\data-charter\\server\\services\\temp\\time_series_covid_19_confirmed.csv")
+    path = "E:\\andrii\\proj\\data-charter\\server\\services\\temp\\time_series_covid_19_confirmed.csv"
+    if not os.path.exists(path):
+        update_data()
+    conf = pd.read_csv(path)
     conf = conf.transpose()
 
     conf.columns = conf.iloc[1, :]
